@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" type="text/css" href="webjars/bootstrap/4.3.1/css/bootstrap.min.css" />
+
+<head>
+	<meta charset="utf-8">
+	<title>Liste des Cosmetiques</title>
+</head>
+
+<body>
+	<div th:replace="template"></div>
+	<div class="container mt-5">
+		<div class="card">
+			<div class="card-header">
+				Liste des Cosmetiques
+			</div>
+			<div class="card-body">
+
+				<table class="table table-striped">
+					<tr>
+						<th>ID</th>
+						<th>Nom Cosmetique</th>
+						<th>Prix</th>
+						<th>action</th>
+					</tr>
+					<tr th:each="c:${cosmetiques.content}">
+						<td th:text="${c.idCosmetique}"></td>
+						<td th:text="${c.nomCosmetique}"></td>
+						<td th:text="${c.prixCosmetique}"></td>
+						<td><a class="btn btn-danger" onclick="return confirm('Etes-vous sûr ?')" th:href="@{supprimerCosmetique(id=${c.idCosmetique},
+						page=${currentPage},size=${size})}">Supprimer</a></td>
+					</tr>
+				</table>
+				<ul class="nav nav-pills">
+					<li th:each="page,status:${pages}">
+						<a th:class="${status.index==currentPage?'btn btn-primary':'btn' }"
+							th:href="@{ ListeCosmetiques(page=${status.index}, size=${size} ) }"
+							th:text="${status.index }"></a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
