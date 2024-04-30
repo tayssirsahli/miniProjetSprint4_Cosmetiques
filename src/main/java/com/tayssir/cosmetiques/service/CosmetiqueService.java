@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 
+import com.tayssir.cosmetiques.entities.Classification;
 import com.tayssir.cosmetiques.entities.Cosmetique;
 
 public interface CosmetiqueService {
@@ -21,5 +22,13 @@ public interface CosmetiqueService {
 	List<Cosmetique> getAllCosmetiques();
 	
 	Page<Cosmetique> getAllCosmetiquesParPage(int page, int size);
+	
+	List<Cosmetique> findByNomCosmetique(String nom);
+	List<Cosmetique> findByNomCosmetiqueContains(String nom);
+	List<Cosmetique> findByNomPrix (String nom, Double prix);
+	List<Cosmetique> findByCategorie (Classification classification);
+	List<Cosmetique> findByClassificationIdClas(Long id);
+	List<Cosmetique> findByOrderByNomCosmetiqueAsc();
+	List<Cosmetique> trierCosmetiquesNomsPrix();
 
 }

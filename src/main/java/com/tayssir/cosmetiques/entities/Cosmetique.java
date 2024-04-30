@@ -2,10 +2,13 @@ package com.tayssir.cosmetiques.entities;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Cosmetique {
@@ -16,18 +19,26 @@ public class Cosmetique {
 	private Double prixCosmetique;
 	private Date dateCreation;
 	
+	@JsonIgnore
+	@ManyToOne
+	private Classification classification;
+	
 	
 	public Cosmetique() {
-		super();
+	
 	}
 
 
-	public Cosmetique( String nomCosmetique, Double prixCosmetique, Date dateCreation) {
-		super();
+
+
+	public Cosmetique(String nomCosmetique, Double prixCosmetique, Date dateCreation) {
+		
 		this.nomCosmetique = nomCosmetique;
 		this.prixCosmetique = prixCosmetique;
 		this.dateCreation = dateCreation;
 	}
+
+
 
 
 	public Long getIdCosmetique() {
@@ -67,6 +78,17 @@ public class Cosmetique {
 
 	public void setDateCreation(Date dateCreation) {
 		this.dateCreation = dateCreation;
+	}
+	
+
+
+	public Classification getClassification() {
+		return classification;
+	}
+
+
+	public void setClassification(Classification classification) {
+		this.classification = classification;
 	}
 
 
