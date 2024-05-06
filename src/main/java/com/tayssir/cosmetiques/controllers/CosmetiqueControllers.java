@@ -131,15 +131,18 @@ public class CosmetiqueControllers {
 
 	@Bean
 	SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
-		http.authorizeHttpRequests((requests) -> requests
-
-				.requestMatchers("/showCreate", "/saveCosmetique").hasAnyAuthority("ADMIN", "AGENT")
-
-				.requestMatchers("/ListeCosmetiques").hasAnyAuthority("ADMIN", "AGENT", "USER").anyRequest()
-				.authenticated())
-
-				.formLogin(Customizer.withDefaults()).httpBasic(Customizer.withDefaults())
-				.exceptionHandling((exception) -> exception.accessDeniedPage("/accessDenied"));
-		return http.build();
+	    http.authorizeHttpRequests((requests) -> requests
+	            .requestMatchers("/showCreate", "/saveCosmetique").hasAnyAuthority("ADMIN", "AGENT")
+	            .requestMatchers("/ListeCosmetiques").hasAnyAuthority("ADMIN", "AGENT", "USER")
+	            .requestMatchers("/login", "/webjars/**").permitAll()
+	            .anyRequest().authenticated())
+	        .formLogin((formLogin) -> formLogin
+	            .loginPage("/login")
+	            .defaultSuccessUrl("/"))
+	        .httpBasic(Customizer.withDefaults())
+	        .exceptionHandling((exception) -> exception
+	            .accessDeniedPage("/accessDenied"));
+	    return http.build();
 	}
+
 }
