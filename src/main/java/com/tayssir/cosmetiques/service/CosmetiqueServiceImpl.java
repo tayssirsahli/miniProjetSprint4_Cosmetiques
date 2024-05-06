@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.tayssir.cosmetiques.entities.Classification;
 import com.tayssir.cosmetiques.entities.Cosmetique;
+import com.tayssir.cosmetiques.repos.ClassificationRepository;
 import com.tayssir.cosmetiques.repos.CosmetiqueRepository;
 
 @Service
@@ -16,6 +17,10 @@ public class CosmetiqueServiceImpl implements CosmetiqueService {
 
 	@Autowired
 	CosmetiqueRepository cosmetiqueRepository;
+	
+	
+	@Autowired
+	ClassificationRepository classificationRepository;
 
 	@Override
 	public Cosmetique saveCosmetique(Cosmetique c) {
@@ -53,13 +58,13 @@ public class CosmetiqueServiceImpl implements CosmetiqueService {
 
 	@Override
 	public Page<Cosmetique> getAllCosmetiquesParPage(int page, int size) {
-		
+
 		return cosmetiqueRepository.findAll(PageRequest.of(page, size));
 	}
 
 	@Override
 	public List<Cosmetique> findByNomCosmetique(String nom) {
-		
+
 		return cosmetiqueRepository.findByNomCosmetique(nom);
 	}
 
@@ -97,6 +102,14 @@ public class CosmetiqueServiceImpl implements CosmetiqueService {
 	public List<Cosmetique> trierCosmetiquesNomsPrix() {
 		// TODO Auto-generated method stub
 		return cosmetiqueRepository.trierCosmetiquesNomsPrix();
+	}
+
+	
+
+	@Override
+	public List<Classification> getAllClassifications() {
+		
+		return classificationRepository.findAll();
 	}
 
 }

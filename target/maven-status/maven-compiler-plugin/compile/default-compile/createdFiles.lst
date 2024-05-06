@@ -1,0 +1,8 @@
+com\tayssir\cosmetiques\entities\Cosmetique.class
+com\tayssir\cosmetiques\CosmetiquesApplication.class
+com\tayssir\cosmetiques\repos\CosmetiqueRepository.class
+com\tayssir\cosmetiques\service\CosmetiqueServiceImpl.class
+com\tayssir\cosmetiques\entities\Classification.class
+com\tayssir\cosmetiques\restcontrollers\CosmetiqueRESTController.class
+com\tayssir\cosmetiques\service\CosmetiqueService.class
+com\tayssir\cosmetiques\controllers\CosmetiqueControllers.class

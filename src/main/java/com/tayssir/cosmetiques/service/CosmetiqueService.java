@@ -30,5 +30,8 @@ public interface CosmetiqueService {
 	List<Cosmetique> findByClassificationIdClas(Long id);
 	List<Cosmetique> findByOrderByNomCosmetiqueAsc();
 	List<Cosmetique> trierCosmetiquesNomsPrix();
+	
+	List<Classification> getAllClassifications();
+
 
 }
